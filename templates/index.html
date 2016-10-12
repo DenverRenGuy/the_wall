@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>The Wall | Coding Dojo Assignment</title>
+        <link rel="stylesheet" href="{{ url_for('static', filename='site.css') }}" type="text/css">
+    </head>
+    <body>
+        <div class="wrapper">
+            <div class="navbar">
+                <div class="logo">
+                    <h1>The Wall - By Coding Dojo</h1>
+                </div>
+            </div>
+
+            <div class="user-portal">
+                <div class="user-box left-side">
+                    <form class="" action="/register" method="post">
+                        <fieldset>
+                            <legend>Register New User</legend>
+                            <p>First Name: <input type="text" name="first_name" placeholder="First Name <Letters Only>" value=""></p>
+                            <p>Last Name: <input type="text" name="last_name" placeholder="Last Name <Letters Only>" value=""></p>
+                            <p>Email: <input type="email" name="email" value=""></p>
+                            <p>Password: <input type="password" name="password" value=""></p>
+                            <p>Confirm Password: <input type="password" name="confirm_password" value=""></p>
+                            <input type="submit" name="submit" value="Register">
+                        </fieldset>
+
+
+                    </form>
+                </div>
+                <div class="user-box">
+                    <form class="" action="/login" method="post">
+                        <fieldset>
+                            <legend>Login</legend>
+                            <p>Email: <input type="email" name="email" value=""></p>
+                            <p>Password: <input type="password" name="password" value=""></p>
+                            <input type="submit" name="submit" value="Login">
+                        </fieldset>
+                    </form>
+                </div>
+            </div>
+            <div class="messages">
+                {% with messages = get_flashed_messages(with_categories=true) %}
+                    {% if messages %}
+                        {% for category, message in messages %}
+                            <div class=" {{category}} "> {{message}} </div>
+                        {% endfor %}
+                    {% endif %}
+                {% endwith %}
+            </div>
+        </div>
+    </body>
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>The Wall | Coding Dojo Assignment</title>
+        <link rel="stylesheet" href="{{ url_for('static', filename='site.css') }}" type="text/css">
+    </head>
+    <body>
+        <div class="wrapper">
+            <div class="navbar">
+                <div class="logo">
+                    <h1>The Wall - By Coding Dojo</h1>
+                </div>
+
+                <div class="account-name">
+                    <h3>{{ session['userName'] }}</h3>
+                </div>
+                <div class="logout">
+                    <form class="" action="/logout" method="get">
+                        <input type="submit" name="submit" value="Logout">
+                    </form>
+                </div>
+
+            </div>
+            <div class="{{ session['welcome'] }}">
+                <h1>Thank you Registering, Welcome to The Wall</h1>
+                <h2>Feel free to Post Freely!</h2>
+            </div>
+
+            <div class="message-post">
+                <form class="" action="/postMessage" method="post">
+                    <textarea name="message" rows="8" cols="40"></textarea>
+                    <input type="submit" name="submit" value="Post Message">
+                </form>
+            </div>
+
+            <div class="message-list">
+                {% for message in messages %}
+                    <p>{{ message['message'] }}</p>
+                    <p>{{ message['created_at'] }}</p>
+                {% endfor %}
+            </div>
+
+            
+
+            </div>
+
+
+
+        </div>
+    </body>
+</html>

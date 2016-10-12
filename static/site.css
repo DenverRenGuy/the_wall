@@ -1,0 +1,113 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+form{
+    background-color: #C79E6C;
+}
+
+fieldset{
+    border: 1px solid #87317C;
+    padding: .5em .5em;
+}
+
+legend{
+    padding: .2em .5em;
+    border: 1px solid #87317C;
+    color: #87317C;
+    text-align: right;
+    font-size: 80%;
+}
+
+input[type=submit]{
+    float: right;
+    border: 0px;
+    background-color: #895D84;
+    padding: .5em;
+    margin-top: 1em;
+    font-size: 120%;
+}
+
+.account-name{
+    display: inline-block;
+    float: right;
+}
+
+.logo{
+    display: inline-block;
+}
+
+.logout{
+    display: inline-block;
+    padding: .1em;
+    font-size: 60%;
+    float: right;
+}
+
+.wrapper{
+    width: 100%;
+    margin: 0 auto;
+}
+
+.navbar{
+    width: 100%;
+    height: 3em;
+    background: #628CAC;
+    border-bottom: 3px solid black;
+    display: inline-block;
+}
+
+    .navbar h1{
+        text-align: left;
+        vertical-align: middle;
+        color: #053051;
+    }
+
+.user-portal{
+    width: 50%;
+    height: 20em;
+    margin: 0 auto;
+    padding: 1em;
+    display: block;
+}
+
+.user-box{
+    display: inline-block;
+    width: 40%;
+
+}
+
+.left-side{
+    float: left;
+    padding-right: 2em;
+}
+
+.messages{
+    display: block;
+    width: 30%;
+    margin: 2em auto;
+    padding: .5em .5em;
+}
+
+.message-post{
+    width: 50%;
+    margin: 2em auto;
+}
+
+.errors{
+    color: red;
+}
+
+.visible{
+    visibility: visible;
+    text-align: center;
+}
+
+    .visible h1{
+        text-align: center;
+    }
+
+.hidden{
+    visibility: hidden;
+}
