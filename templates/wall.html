@@ -23,7 +23,7 @@
 
             </div>
             <div class="{{ session['welcome'] }}">
-                <h1>Thank you Registering, Welcome to The Wall</h1>
+                <h1>Thank you for Registering, Welcome to The Wall</h1>
                 <h2>Feel free to Post Freely!</h2>
             </div>
 
@@ -36,12 +36,24 @@
 
             <div class="message-list">
                 {% for message in messages %}
-                    <p>{{ message['message'] }}</p>
-                    <p>{{ message['created_at'] }}</p>
+                    <h2>{{ message['first_name'] }} {{ message['last_name'] }}</h2>
+                    <p class="message-list-created">{{ message['created_at'] }}</p>
+                    <p class="message-list-message">{{ message['message'] }}</p>
+                        {% for comment in message.comments %}
+                            <h3 class="comment-list-header">{{ comment['first_name'] }} {{message['last_name']}}</h3>
+                            <p class="comment-list-created">{{ comment['created_at'] }}</p>
+                            <p class="comment-list-comment">{{ comment['comment'] }}</p>
+                        {% endfor %}
+                        <form class="form-comment" action="/postComment" method="post">
+                            <h4>Post a Comment</h4>
+                            <input type="hidden" name="message_id" value="{{ message['id'] }}">
+                            <textarea name="comment" rows="4" cols="80"></textarea>
+                            <input type="submit" name="submit" value="Post Comment">
+                        </form>
                 {% endfor %}
             </div>
 
-            
+
 
             </div>
 

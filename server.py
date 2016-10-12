@@ -109,16 +109,32 @@ def logout():
 @app.route('/wall', methods=['GET','POST'])
 def wall():
 
-    
+    messagesQuery = "SELECT m.id, m.user_id, m.message, m.created_at, u.first_name, u.last_name FROM messages m JOIN users u ON m.user_id = u.id ORDER BY created_at DESC"
 
-    messageQuery = 'SELECT * FROM messages m WHERE m.user_id = :user_id'
-    messageCommentQuery = 'SELECT * FROM messages m JOIN comments c ON m.id = c.message_id ORDER BY m.user_id'
+    messages = mysql.query_db(messagesQuery)
+    # for message in messages:
+    #     commentQuery = 'SELECT * FROM comments c WHERE message_id = :message_id'
+    #     data = {
+    #         'message_id': message['message_id']
+    #     }
 
-    data = {
-        'user_id': session['user_id']
-    }
+    for i in range(len(messages)):
+        message_id = messages[i]['id']
+        commentQuery = 'SELECT u.first_name, u.last_name, c.comment, c.created_at FROM comments c JOIN users u ON c.user_id = u.id WHERE message_id = :message_id'
+        data = {
+             'message_id': message_id
+         }
+        comments = mysql.query_db(commentQuery, data)
+        messages[i]['comments'] = comments
 
-    messages = mysql.query_db(messageQuery, data)
+    # messageQuery = 'SELECT * FROM messages m WHERE m.user_id = :user_id'
+    # messageCommentQuery = 'SELECT * FROM messages m JOIN comments c ON m.id = c.message_id ORDER BY m.user_id'
+    #
+    # data = {
+    #     'user_id': session['user_id']
+    # }
+    #
+    # messages = mysql.query_db(messageQuery, data)
 
     return render_template('wall.html', messages = messages)
 
@@ -141,9 +157,12 @@ def postComment():
     insertQuery = 'INSERT INTO comments(user_id, message_id, comment, created_at) VALUES(:user_id, :message_id, :comment, NOW())'
     data = {
         'user_id': session['user_id'],
-        'message_id':
+        'message_id': request.form['message_id'],
         'comment': d['comment']
     }
+    mysql.query_db(insertQuery, data)
+
+    return redirect(url_for('wall'))
 
 
 app.run(debug=True)

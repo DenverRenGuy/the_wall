@@ -111,3 +111,36 @@ input[type=submit]{
 .hidden{
     visibility: hidden;
 }
+
+.message-list{
+    margin-left: 10em;
+}
+
+.message-list-created{
+    font-size: 110%;
+    margin: .3em 0em 0em .5em;
+}
+
+.message-list-message{
+    font-size: 90%;
+    margin-left: 1.5em;
+    margin-top: .7em;
+}
+
+.comment-list-header{
+    margin-left: 2em;
+}
+
+.comment-list-created{
+    margin-left: 2.5em;
+}
+
+.comment-list-comment{
+    margin-left: 3.5em;
+}
+
+.form-comment{
+    width: 50%;
+    margin-top: 1em;
+    margin-bottom: 2em;
+}
